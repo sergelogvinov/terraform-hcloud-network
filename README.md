@@ -17,15 +17,6 @@ module "network" {
   allowlist_datacenters = ["123.123.123.0/24"]
   allowlist_admins      = ["1.2.3.4/32"]
 
-  capabilities = {
-    "all" = {
-      network_peer_enable = false,
-      network_peer_type   = "cx23",
-      network_peer_zone   = "fsn1"
-    },
-  }
-  ssh_key = "ssh-ed25519 AAAAC..."
-
   tags = {
     environment = "rnd"
   }
@@ -38,7 +29,7 @@ module "network" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | 1.60.1 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.60.0 |
 
 ## Providers
 
@@ -54,18 +45,17 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [hcloud_firewall.common](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/firewall) | resource |
-| [hcloud_firewall.controlplane](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/firewall) | resource |
-| [hcloud_firewall.controlplane_lb](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/firewall) | resource |
-| [hcloud_firewall.peer](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/firewall) | resource |
-| [hcloud_network.main](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/network) | resource |
-| [hcloud_network_subnet.private](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/network_subnet) | resource |
-| [hcloud_network_subnet.public](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/network_subnet) | resource |
-| [hcloud_network_subnet.robot](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/network_subnet) | resource |
-| [hcloud_primary_ip.peer_v4](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/primary_ip) | resource |
-| [hcloud_primary_ip.peer_v6](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/primary_ip) | resource |
-| [hcloud_server.peer](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/server) | resource |
-| [hcloud_ssh_key.infra](https://registry.terraform.io/providers/hetznercloud/hcloud/1.60.1/docs/resources/ssh_key) | resource |
+| [hcloud_firewall.common](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall) | resource |
+| [hcloud_firewall.controlplane](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall) | resource |
+| [hcloud_firewall.controlplane_lb](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall) | resource |
+| [hcloud_firewall.peer](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall) | resource |
+| [hcloud_network.main](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network) | resource |
+| [hcloud_network_subnet.private](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network_subnet) | resource |
+| [hcloud_network_subnet.public](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network_subnet) | resource |
+| [hcloud_network_subnet.robot](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network_subnet) | resource |
+| [hcloud_primary_ip.peer_v4](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip) | resource |
+| [hcloud_primary_ip.peer_v6](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/primary_ip) | resource |
+| [hcloud_server.peer](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) | resource |
 
 ## Inputs
 
@@ -79,7 +69,7 @@ No modules.
 | <a name="input_network_shift"></a> [network\_shift](#input\_network\_shift) | Network number shift | `number` | `1` | no |
 | <a name="input_network_vswitch"></a> [network\_vswitch](#input\_network\_vswitch) | n/a | `number` | `0` | no |
 | <a name="input_regions"></a> [regions](#input\_regions) | The id of the hezner region (order is important) | `list(string)` | <pre>[<br/>  "fsn1",<br/>  "nbg1",<br/>  "hel1"<br/>]</pre> | no |
-| <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | ssh public key for the VMs: ssh-keygen -t ed25519 -f ~/.ssh/peer | `string` | `""` | no |
+| <a name="input_ssh_key_id"></a> [ssh\_key\_id](#input\_ssh\_key\_id) | HCloud ssh public key id | `number` | `0` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags of resources | `map(string)` | <pre>{<br/>  "environment": "develop"<br/>}</pre> | no |
 | <a name="input_whitelist_web"></a> [whitelist\_web](#input\_whitelist\_web) | Cloudflare subnets | `list` | <pre>[<br/>  "173.245.48.0/20",<br/>  "103.21.244.0/22",<br/>  "103.22.200.0/22",<br/>  "103.31.4.0/22",<br/>  "141.101.64.0/18",<br/>  "108.162.192.0/18",<br/>  "190.93.240.0/20",<br/>  "188.114.96.0/20",<br/>  "197.234.240.0/22",<br/>  "198.41.128.0/17",<br/>  "162.158.0.0/15",<br/>  "104.16.0.0/13",<br/>  "104.24.0.0/14",<br/>  "172.64.0.0/13",<br/>  "131.0.72.0/22"<br/>]</pre> | no |
 

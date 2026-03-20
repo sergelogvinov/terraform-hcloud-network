@@ -83,7 +83,8 @@ variable "capabilities" {
   }
 }
 
-variable "ssh_key" {
-  description = "ssh public key for the VMs: ssh-keygen -t ed25519 -f ~/.ssh/peer"
-  default     = ""
+variable "ssh_key_id" {
+  description = "HCloud ssh public key id"
+  type        = number
+  default     = 0
 }

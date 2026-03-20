@@ -24,7 +24,7 @@ resource "hcloud_server" "peer" {
 
   name     = "router-${lookup(try(var.capabilities["all"], {}), "network_peer_zone", "fsn1")}"
   image    = "debian-13"
-  ssh_keys = [hcloud_ssh_key.infra.id]
+  ssh_keys = [var.ssh_key_id]
   labels   = merge(var.tags, { type = "infra", label = "peer" })
 
   firewall_ids = [hcloud_firewall.common.id, hcloud_firewall.peer.id]
