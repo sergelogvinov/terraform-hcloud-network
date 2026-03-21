@@ -92,6 +92,24 @@ resource "hcloud_firewall" "controlplane_lb" {
   }
 }
 
+resource "hcloud_firewall" "web" {
+  name   = "web"
+  labels = merge(var.tags, { type = "infra", label = "web" })
+
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "80"
+    source_ips = var.whitelist_web
+  }
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "443"
+    source_ips = var.whitelist_web
+  }
+}
+
 resource "hcloud_firewall" "peer" {
   name   = "peer"
   labels = merge(var.tags, { type = "infra", label = "peer" })

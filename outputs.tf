@@ -57,5 +57,6 @@ output "network_secgroup" {
     common          = hcloud_firewall.common.id
     controlplane    = hcloud_firewall.controlplane.id
     controlplane_lb = hcloud_firewall.controlplane_lb.id
+    web             = hcloud_firewall.web.id
   } }
 }
