@@ -47,6 +47,12 @@ resource "hcloud_firewall" "controlplane" {
     port       = "50000"
     source_ips = var.allowlist_admins
   }
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "50001"
+    source_ips = var.allowlist_datacenters
+  }
 
   rule {
     direction  = "in"
@@ -64,7 +70,7 @@ resource "hcloud_firewall" "controlplane" {
     direction  = "in"
     protocol   = "tcp"
     port       = "6443"
-    source_ips = var.allowlist_admins
+    source_ips = concat(var.allowlist_admins, var.allowlist_datacenters)
   }
 }
 
